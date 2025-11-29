@@ -1,0 +1,313 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&display=swap');
+
+/* === Navbar Scoped Styles === */
+/* Use global theme variables from App.css (fallbacks provided where appropriate) */
+.navbar {
+  font-family: "Inter", system-ui, Arial, sans-serif;
+  position: sticky;
+  top: 0;
+  width: 100%;              /* make full-width so there is no visible right gap */
+  z-index: 60;
+
+  /* light glass / dark glass controlled by --glass in App.css */
+  background: linear-gradient(180deg, var(--glass), rgba(255,255,255,0.35));
+  backdrop-filter: blur(6px);
+
+  /* use theme border/shadow variables */
+  border-bottom: 1px solid rgba(0,0,0,0.04);
+  box-shadow: var(--shadow);
+}
+
+/* === Inner Layout === */
+/* constrain inner content and center it; this avoids leaving empty space on the right */
+.navbar .nav-inner {
+  width: 100%;
+  max-width: 1200px;    /* center content and keep a consistent width */
+  margin: 0 auto;       /* centers the .nav-inner inside full-width .navbar */
+  padding: 10px 16px;   /* reduce horizontal padding so right-side items sit closer */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+}
+
+/* === Brand === */
+.navbar .brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: var(--text);
+  font-weight: 700;
+  font-size: 16px;
+}
+.navbar .logo-mark {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* accent gradient uses --accent and fallback to original green as second stop */
+  background: linear-gradient(90deg, var(--accent), var(--accent-2, #22c55e));
+  color: white;
+  font-weight: 800;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+}
+.navbar .brand-text { display: inline-block; }
+
+/* === Center Links === */
+.navbar .nav-center {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  margin-left: auto;             
+  justify-content: flex-end;
+}
+
+.navbar .nav-link {
+  color: var(--text);
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: background 0.15s ease, transform 0.12s ease;
+}
+.navbar .nav-link:hover {
+  background: rgba(37, 99, 235, 0.06); /* subtle hover; kept for effect */
+  transform: translateY(-2px);
+}
+.navbar .nav-link.muted {
+  color: var(--muted);
+}
+
+/* === Right Side === */
+/* ensure nav-right hugs the far right of .nav-inner (no extra gap) */
+.navbar .nav-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: 0;    /* removed previous left margin so auto centering behaves correctly */
+  margin-right: 0;   /* explicit reset */
+}
+
+/* ensure things inside nav-right align to the right edge when space exists */
+.navbar .nav-inner > .nav-right {
+  margin-left: auto;
+}
+
+/* === Buttons === */
+.navbar .btn {
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid transparent;
+  font-size: 14px;
+  transition: all 0.15s ease;
+}
+.navbar .btn.ghost {
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid rgba(37, 99, 235, 0.15);
+}
+.navbar .btn.solid {
+  background: linear-gradient(90deg, var(--accent), var(--accent-2, #22c55e));
+  color: #fff;
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.12);
+}
+.navbar .btn.solid:hover {
+  box-shadow: 0 12px 24px rgba(37, 99, 235, 0.25);
+  transform: translateY(-1px);
+}
+
+/* red Logout button */
+.navbar .btn.danger,
+.navbar .btn.danger.logout-visible {
+  background: linear-gradient(90deg, #ef4444, #dc2626);
+  color: #fff;
+  border: none;
+  box-shadow: 0 8px 20px rgba(220, 38, 38, 0.12);
+  font-weight: 700;
+  padding: 8px 12px;
+  border-radius: 10px;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+.navbar .btn.danger:hover,
+.navbar .btn.danger.logout-visible:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 26px rgba(220, 38, 38, 0.18);
+}
+
+/* === Theme toggle (small button aligned with other controls) === */
+.navbar .theme-toggle {
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--surface, #ffffff) 92%, transparent 8%);
+  cursor: pointer;
+  display: inline-grid;
+  place-items: center;
+  line-height: 1;
+  min-width: 40px;
+  height: 40px;
+  font-size: 16px;
+}
+
+/* === User Menu / Avatar === */
+.navbar .user-area {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.navbar .avatar-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 6px 8px;
+  border-radius: 10px;
+}
+.navbar .avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  color: white;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2, #22c55e));
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+.navbar .username {
+  font-weight: 700;
+  color: var(--text);
+  font-size: 14px;
+}
+.navbar .chev {
+  transition: transform 0.18s ease;
+  color: var(--muted);
+}
+.navbar .chev.open {
+  transform: rotate(180deg);
+}
+
+/* === Dropdown === */
+.navbar .user-menu {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 10px);
+  min-width: 160px;
+
+  /* surface/background adapted to theme */
+  background: var(--surface);
+  border-radius: 10px;
+  box-shadow: 0 12px 40px rgba(2, 6, 23, 0.08);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  z-index: 40;
+}
+.navbar .user-item {
+  padding: 10px 12px;
+  font-weight: 600;
+  color: var(--text);
+  text-decoration: none;
+  background: transparent;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+.navbar .user-item:hover {
+  background: rgba(15, 23, 42, 0.04);
+}
+
+/* === Hamburger (Mobile) === */
+.navbar .hamburger {
+  display: inline-grid;
+  width: 44px;
+  height: 36px;
+  place-items: center;
+  gap: 4px;
+  background: transparent;
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  border-radius: 8px;
+  padding: 6px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+.navbar .hamburger:hover {
+  background: rgba(15, 23, 42, 0.04);
+}
+.navbar .hamburger span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: var(--text);
+  border-radius: 2px;
+  transition: transform 0.18s ease, opacity 0.18s ease;
+}
+.navbar .hamburger.open span:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+.navbar .hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+.navbar .hamburger.open span:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+/* === Mobile Menu === */
+@media (max-width: 880px) {
+  .navbar .nav-center {
+    display: none;
+    margin-left: 0;     /* reset margin in mobile so absolute menu behaves well */
+    justify-content: flex-start;
+  }
+
+  .navbar .nav-center.open {
+    display: flex;
+    position: absolute;
+    left: 12px;
+    right: 12px;
+    top: 68px;
+
+    /* mobile menu surface follows theme */
+    background: var(--surface);
+    border-radius: 12px;
+    flex-direction: column;
+    padding: 12px;
+    gap: 8px;
+    box-shadow: 0 12px 36px rgba(2, 6, 23, 0.08);
+  }
+
+  .navbar .nav-center.open .nav-link {
+    padding: 10px 12px;
+    border-radius: 8px;
+  }
+
+  /* On small screens, move the visible logout into the dropdown / mobile menu to save space.
+     We'll hide the visible logout button and expose logout via the user-menu or mobile menu. */
+  .navbar .btn.danger.logout-visible {
+    display: none;
+  }
+
+  .navbar .hamburger {
+    display: inline-grid;
+  }
+}
+
+/* === Desktop Only === */
+@media (min-width: 881px) {
+  .navbar .hamburger {
+    display: none;
+  }
+}

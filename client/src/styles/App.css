@@ -1,0 +1,109 @@
+/* base reset (kept your minimal reset) */
+html, body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  height: 100%;
+}
+
+/* --------------------------
+   Theme variables
+   Define variables for the light theme on :root
+   and override them when [data-theme="dark"] is present.
+   Use these variables across component CSS files.
+   -------------------------- */
+
+/* Light theme (default) */
+:root {
+  --bg: #ffffff;
+  --surface: #f8fafc;     /* cards / surfaces */
+  --text: #111827;        /* primary text */
+  --muted: #6b7280;       /* secondary/muted text */
+  --accent: #2563eb;      /* primary action / link */
+  --border: #e5e7eb;      /* borders / separators */
+  --shadow: 0 1px 3px rgba(16,24,40,0.04);
+  --glass: rgba(255,255,255,0.6);
+}
+
+/* Dark theme overrides */
+[data-theme="dark"] {
+  --bg: #071025;          /* page bg */
+  --surface: #0b1624;     /* cards / surfaces */
+  --text: #e6eef8;
+  --muted: #9aa6b2;
+  --accent: #4f9cff;
+  --border: #12202b;
+  --shadow: 0 1px 3px rgba(0,0,0,0.6);
+  --glass: rgba(6,10,15,0.6);
+}
+
+/* Apply globally */
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background .2s ease, color .2s ease;
+  min-height: 100vh;
+}
+
+/* links / accent */
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+a:hover { text-decoration: underline; }
+
+/* common UI pieces you likely have */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+/* card surface */
+.card, .panel {
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  border-radius: 8px;
+  padding: 16px;
+  transition: background .2s ease, color .2s ease, border-color .2s ease;
+}
+
+/* muted text helper */
+.muted {
+  color: var(--muted);
+}
+
+/* small visual helpers */
+.hr {
+  height: 1px;
+  background: var(--border);
+  margin: 12px 0;
+}
+
+/* theme toggle button example class (if you add a button in Navbar) */
+.theme-toggle {
+  border: 1px solid var(--border);
+  background: transparent;
+  padding: 6px 8px;
+  border-radius: 6px;
+  color: var(--text);
+  cursor: pointer;
+}
+.theme-toggle:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* You should go into your other CSS files (Home.css, Navbar.css, etc.)
+   and replace hard-coded color values with the CSS variables above, for example:
+
+   background: #fff;  -> background: var(--bg);
+   color: #111827;    -> color: var(--text);
+   background: #f8fafc -> background: var(--surface);
+   border-color: #e5e7eb -> border-color: var(--border);
+*/

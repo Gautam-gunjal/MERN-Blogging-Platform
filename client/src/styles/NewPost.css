@@ -1,0 +1,372 @@
+/* NewPost (theme-aware) */
+.newpost {
+  padding: 20px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  max-width: 960px;
+  margin: 24px auto;
+  color: var(--text);
+}
+
+/* form container uses surface & border vars */
+.newpost-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  background: var(--surface);
+  border-radius: 16px;
+  padding: 18px 18px 20px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+}
+
+.row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.top-row {
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.title-wrap {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.field-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+  margin-bottom: 2px;
+}
+
+/* title input uses surface/bg contrast */
+.title-input {
+  flex: 1;
+  font-size: 20px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  font-weight: 600;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+  background: var(--surface);
+  color: var(--text);
+}
+
+.title-input::placeholder {
+  color: color-mix(in srgb, var(--muted) 70%, transparent 30%);
+}
+
+.title-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent) 12%, transparent 88%);
+  background: var(--surface);
+}
+
+.title-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2px;
+}
+
+.slug-preview {
+  font-size: 12px;
+  margin-left: 8px;
+  color: var(--muted);
+}
+
+.slug-preview code {
+  background: color-mix(in srgb, var(--surface) 90%, transparent 10%);
+  padding: 2px 6px;
+  border-radius: 999px;
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.draft-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+/* small buttons scoped */
+.newpost .small {
+  padding: 6px 10px;
+  font-size: 13px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--surface) 88%, transparent 12%);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 0.12s ease, transform 0.05s ease, box-shadow 0.12s ease;
+  color: var(--text);
+}
+
+.newpost .small:hover {
+  background: color-mix(in srgb, var(--surface) 94%, transparent 6%);
+  box-shadow: 0 1px 3px color-mix(in srgb, var(--shadow, rgba(15,23,42,0.06)) 60%, transparent 40%);
+  transform: translateY(-0.5px);
+}
+
+.newpost .small:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+.tags-row {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.tags-input-wrap {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+}
+
+.tags-input-wrap input {
+  flex: 1;
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: 14px;
+  outline: none;
+  background: var(--surface);
+  color: var(--text);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+}
+
+.tags-input-wrap input::placeholder {
+  color: color-mix(in srgb, var(--muted) 70%, transparent 30%);
+}
+
+.tags-input-wrap input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent) 10%, transparent 90%);
+  background: var(--surface);
+}
+
+.chips {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 2px;
+}
+
+.chip {
+  background: color-mix(in srgb, var(--surface) 90%, var(--bg) 10%);
+  border: 1px solid color-mix(in srgb, var(--border) 80%, transparent 20%);
+  padding: 6px 10px;
+  border-radius: 999px;
+  display: inline-flex;
+  gap: 4px;
+  align-items: center;
+  font-size: 13px;
+  color: var(--accent);
+}
+
+/* chip remove button scoped */
+.newpost .chip-remove {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+  margin-left: 2px;
+  color: color-mix(in srgb, var(--text) 80%, var(--muted) 20%);
+  padding: 0;
+}
+
+/* Editor */
+
+.editor-wrap {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--surface);
+}
+
+.ql-container {
+  min-height: 320px;
+  border: none;
+  background: var(--surface);
+  color: var(--text);
+}
+
+.ql-editor {
+  min-height: 300px;
+  padding: 18px;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--text);
+  background: var(--surface);
+}
+
+.ql-toolbar {
+  background: color-mix(in srgb, var(--surface) 96%, transparent 4%);
+  border-bottom: 1px solid var(--border);
+}
+
+/* scope image styling to this editor instance */
+.newpost .ql-editor img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 8px 0;
+}
+
+/* Meta row */
+
+.meta-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-top: 6px;
+}
+
+.newpost .meta-left .muted {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.meta-right {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+/* primary button scoped */
+/* --> FIX: force high-contrast label so it remains visible in both light & dark themes */
+.newpost .primary {
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  color: #000000; /* readable in light mode */
+  border: 1px solid rgba(0,0,0,0.06); /* faint edge so it doesn't blend in on pale backgrounds */
+  padding: 9px 16px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 14px;
+  transition: background-color 0.15s ease, transform 0.05s ease, box-shadow 0.15s ease;
+  box-shadow: 0 8px 20px color-mix(in srgb, var(--accent) 18%, transparent 82%);
+  text-shadow: 0 1px 0 rgba(255,255,255,0.08);
+}
+
+/* subtle focus for keyboard users */
+.newpost .primary:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--accent) 20%, transparent 80%);
+  outline-offset: 2px;
+}
+
+/* slightly stronger hover so the CTA stands out */
+.newpost .primary:hover:not(:disabled) {
+  box-shadow: 0 12px 28px color-mix(in srgb, var(--accent) 24%, transparent 76%);
+  transform: translateY(-1px);
+}
+
+.newpost .primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Dark-mode override: use white label and slightly lighter border for contrast */
+@media (prefers-color-scheme: dark) {
+  .newpost .primary {
+    color: var(--text);
+    border-color: rgba(255,255,255,0.06);
+    /* invert subtle text-shadow for better legibility on dark gradients */
+    text-shadow: 0 1px 0 rgba(0,0,0,0.22);
+  }
+}
+
+/* ghost button scoped */
+.newpost .ghost {
+  padding: 8px 13px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.15s ease, transform 0.05s ease, box-shadow 0.15s ease;
+  color: var(--text);
+}
+
+.newpost .ghost:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--surface) 94%, transparent 6%);
+  box-shadow: 0 6px 14px color-mix(in srgb, var(--shadow, rgba(15,23,42,0.06)) 60%, transparent 40%);
+  transform: translateY(-0.5px);
+}
+
+.newpost .ghost:disabled {
+  opacity: 0.6;
+  cursor:not-allowed;
+}
+
+/* error/info messages */
+
+.newpost .err {
+  color: color-mix(in srgb, #b91c1c 100%, var(--text) 0%);
+  margin-top: 8px;
+  font-size: 14px;
+}
+
+.newpost .info {
+  color: color-mix(in srgb, #065f46 100%, var(--text) 0%);
+  margin-top: 4px;
+  font-size: 14px;
+}
+
+/* Image figure styling inside content / preview */
+.newpost .ql-editor figure.blog-image-figure {
+  margin: 16px 0;
+  text-align: center;
+}
+
+.newpost .ql-editor figure.blog-image-figure img {
+  border-radius: 10px;
+}
+
+.newpost .ql-editor figcaption.blog-image-caption {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 6px;
+}
+
+/* (image-modal CSS left as-is if you ever reuse it) */
+
+@media (max-width: 768px) {
+  .newpost {
+    padding: 12px;
+  }
+
+  .newpost-form {
+    padding: 14px;
+    border-radius: 12px;
+  }
+
+  .top-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .draft-actions {
+    justify-content: flex-end;
+  }
+
+  .meta-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .meta-right {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}

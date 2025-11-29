@@ -1,0 +1,586 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+
+/* =========================
+   Scoped variables & reset
+   All rules are rooted under .landing to avoid leakage
+   ========================= */
+.landing {
+  /* keep the scoped shapes but delegate real color values to global theme variables */
+  --card-bg: var(--surface, rgba(255,255,255,0.85));
+  --muted: var(--muted, #64748b);
+  --text: var(--text, #0f172a);
+  --accent-1: var(--accent, #2563eb);
+  --accent-2: var(--accent-2, #1e40af);
+  --glass: var(--glass, rgba(255,255,255,0.6));
+  --glass-strong: rgba(255,255,255,0.85);
+  --shadow-sm: var(--shadow, 0 6px 18px rgba(15, 23, 42, 0.06));
+  --shadow-lg: 0 20px 50px rgba(15, 23, 42, 0.12);
+  --radius-lg: 18px;
+  --radius-md: 12px;
+  --radius-sm: 8px;
+  --gap: 24px;
+
+  font-family: "Inter", system-ui, Arial, sans-serif;
+  color: var(--text);
+  /* page background should use theme bg */
+  background: linear-gradient(180deg, var(--bg, #f8fbff) 0%, color-mix(in srgb, var(--bg, #f8fbff) 90%, var(--surface, #fff) 10%) 100%);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
+}
+
+/* ensure descendants inherit box-sizing */
+.landing *,
+.landing *::before,
+.landing *::after {
+  box-sizing: inherit;
+}
+
+/* =========================
+   Global layout and container
+   ========================= */
+.landing {
+  padding: 64px 20px 96px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+}
+
+/* center constrained content areas */
+.landing .container {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* =========================
+   HERO
+   ========================= */
+.landing .hero {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 48px;
+  /* hero surface uses card-bg which follows theme */
+  background: linear-gradient(180deg, color-mix(in srgb, var(--card-bg) 92%, transparent 8%), color-mix(in srgb, var(--card-bg) 80%, var(--bg, #f8fbff) 20%));
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 36px;
+  align-items: center;
+  transition: transform .28s cubic-bezier(.2, .9, .2, 1), box-shadow .28s ease;
+  position: relative;
+  overflow: visible;
+}
+
+/* subtle lift on hover — reduced motion respects user preference */
+@media (hover:hover) and (pointer: fine) {
+  .landing .hero:hover {
+    transform: translateY(-6px);
+  }
+}
+
+.landing .hero-inner {
+  display: contents;
+}
+
+/* left copy */
+.landing .hero-copy {
+  text-align: left;
+  padding-right: 4px;
+}
+
+.landing .hero-title {
+  font-size: clamp(30px, 4.2vw, 48px);
+  font-weight: 800;
+  color: var(--accent-2);
+  margin: 0 0 10px;
+  letter-spacing: -0.6px;
+  line-height: 1.03;
+  text-wrap: balance;
+}
+
+.landing .hero-sub {
+  font-size: 16.5px;
+  color: var(--muted);
+  margin: 8px 0 22px;
+  max-width: 56ch;
+  line-height: 1.65;
+}
+
+/* CTA buttons grouped */
+.landing .cta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+
+.landing .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 20px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 15px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: transform .18s ease, box-shadow .18s ease, opacity .12s ease;
+  will-change: transform;
+}
+
+/* primary gradient button with depth */
+.landing .btn.primary {
+  background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
+  box-shadow: 0 10px 30px color-mix(in srgb, var(--accent-1) 18%, black 0%), 0 2px 6px rgba(15, 23, 42, 0.06);
+}
+
+.landing .btn.primary:active {
+  transform: translateY(1px) scale(.998);
+}
+
+/* ghost button with glass effect */
+.landing .btn.ghost {
+  background: transparent;
+  color: var(--accent-1);
+  border: 1.5px solid color-mix(in srgb, var(--accent-1) 14%, black 0%);
+  backdrop-filter: blur(6px);
+}
+
+/* accessibility: focus-visible ring */
+.landing .btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent-1) 12%, transparent 0%);
+  border-radius: 12px;
+}
+
+/* quick stats pill list */
+.landing .quick-stats {
+  list-style: none;
+  padding: 0;
+  margin: 16px 0 0;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.landing .quick-stats li {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--card-bg) 90%, transparent 10%), color-mix(in srgb, var(--card-bg) 80%, var(--bg, #fff) 20%));
+  border-radius: 12px;
+  padding: 8px 12px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border);
+  min-width: 120px;
+  text-align: left;
+}
+
+.landing .quick-stats strong {
+  display: block;
+  color: var(--accent-2);
+  font-weight: 700;
+  font-size: 13px;
+}
+
+/* hero-art: modern card with subtle depth */
+.landing .hero-art {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--accent-1) 10%, transparent 90%), color-mix(in srgb, var(--card-bg) 70%, transparent 30%));
+  border-radius: 14px;
+  padding: 18px;
+  box-shadow: inset 0 -6px 24px color-mix(in srgb, var(--accent-1) 3%, transparent 97%), var(--shadow-sm);
+  min-height: 200px;
+  height: auto;
+  overflow: hidden;
+}
+
+/* Add a soft edge highlight to the illustration */
+.landing .hero-art svg {
+  width: 100%;
+  max-width: 360px;
+  height: auto;
+  display: block;
+}
+
+/* =========================
+   Recent posts section
+   ========================= */
+.landing .recent-blogs {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 18px;
+  border-radius: 14px;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--card-bg) 85%, transparent 15%), color-mix(in srgb, var(--card-bg) 70%, var(--bg, #fff) 30%));
+  border: 1px solid var(--border);
+  box-shadow: 0 12px 34px color-mix(in srgb, var(--shadow, rgba(15,23,42,0.04)) 100%, transparent 0%);
+}
+
+.landing .recent-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.landing .recent-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.landing .recent-header h2 {
+   margin: 0 auto 10px;
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  display: inline-block;
+  position: relative;
+  padding-bottom: 12px;
+
+  /* preserve gradient headline using theme accent */
+  color: var(--accent);
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2, #3730a3) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* blue underline for Recent posts (added) */
+.landing .recent-header h2::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+  width: 70px;          /* underline length */
+  height: 3px;          /* underline thickness */
+  border-radius: 999px; /* rounded ends */
+  background: var(--accent-1);  /* blue underline using theme variable */
+}
+
+.landing .recent-header .view-all {
+  color: var(--accent-1);
+  font-weight: 700;
+  text-decoration: none;
+  font-size: 14px;
+  padding: 6px 10px;
+  border-radius: 10px;
+}
+
+/* grid */
+.landing .blog-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 10px;
+}
+
+/* adaptive columns with minmax */
+@media (max-width: 1200px) {
+  .landing .blog-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 920px) {
+  .landing .hero {
+    grid-template-columns: 1fr;
+    text-align: center;
+    padding: 38px;
+  }
+
+  .landing .hero-copy {
+    padding: 0;
+  }
+
+  .landing .blog-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .landing .hero-art {
+    order: -1;
+  }
+}
+
+@media (max-width: 560px) {
+  .landing .blog-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
+
+/* each post card */
+.landing .blog-card {
+  background: linear-gradient(180deg, var(--card-bg), color-mix(in srgb, var(--card-bg) 80%, var(--bg, #fff) 20%));
+  border-radius: var(--radius-md);
+  padding: 12px;
+  border: 1px solid var(--border);
+  box-shadow: 0 8px 22px color-mix(in srgb, var(--shadow-sm) 100%, transparent 0%);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 210px;
+  transition: transform .18s ease, box-shadow .18s ease;
+  overflow: hidden;
+}
+
+/* hover depth */
+@media (hover:hover) and (pointer: fine) {
+  .landing .blog-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 26px 60px color-mix(in srgb, var(--shadow-sm) 120%, transparent 0%);
+  }
+}
+
+/* thumbnail area */
+.landing .thumb-link {
+  display: block;
+  border-radius: 10px;
+  overflow: hidden;
+  flex-shrink: 0;
+  border: 1px solid var(--border);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--card-bg) 90%, transparent 10%), var(--card-bg));
+}
+
+/* lazy image */
+.landing .blog-card img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  display: block;
+  border-radius: 8px;
+  transition: transform .6s cubic-bezier(.2, .8, .2, 1);
+}
+
+/* slight parallax on hover */
+@media (hover:hover) and (pointer: fine) {
+  .landing .blog-card:hover img {
+    transform: scale(1.04);
+  }
+}
+
+/* placeholder styling when no image */
+.landing .thumb-placeholder {
+  width: 100%;
+  height: 140px;
+  border-radius: 8px;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--card-bg) 85%, transparent 15%), var(--card-bg));
+  display: block;
+  align-items: center;
+  justify-content: center;
+}
+
+/* body */
+.landing .blog-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 4px 2px;
+  flex: 1;
+}
+
+.landing .blog-title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--accent-2);
+}
+
+.landing .blog-title a {
+  color: inherit;
+  text-decoration: none;
+  transition: color .12s ease;
+}
+
+.landing .blog-title a:hover {
+  color: var(--accent-1);
+  text-decoration: underline;
+}
+
+/* excerpt */
+.landing .blog-excerpt {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+  flex: 1;
+  line-height: 1.45;
+}
+
+/* meta row positioned neatly */
+.landing .blog-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: space-between;
+  margin-top: 6px;
+}
+
+/* small caps-like meta */
+.landing .blog-meta .author,
+.landing .blog-meta .date {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.landing .blog-meta .dot {
+  color: color-mix(in srgb, var(--muted) 70%, transparent 30%);
+}
+
+/* pill read button */
+.landing .blog-meta .read-btn {
+  padding: 7px 12px;
+  font-size: 13px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
+  text-decoration: none;
+  font-weight: 700;
+  box-shadow: 0 6px 16px color-mix(in srgb, var(--accent-1) 14%, transparent 0%);
+}
+
+/* skeleton states (loading) */
+.landing .blog-card.skeleton {
+  pointer-events: none;
+  user-select: none;
+}
+
+.landing .blog-card.skeleton .s-thumb {
+  height: 140px;
+  background: linear-gradient(90deg, color-mix(in srgb, var(--card-bg) 80%, transparent 20%), color-mix(in srgb, var(--card-bg) 90%, transparent 10%));
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+
+.landing .blog-card.skeleton .s-title {
+  height: 14px;
+  width: 65%;
+  background: color-mix(in srgb, var(--card-bg) 85%, transparent 15%);
+  border-radius: 6px;
+  margin-bottom: 8px;
+}
+
+.landing .blog-card.skeleton .s-excerpt {
+  height: 40px;
+  width: 100%;
+  background: color-mix(in srgb, var(--card-bg) 80%, transparent 20%);
+  border-radius: 6px;
+}
+
+/* =========================
+   Features section
+   ========================= */
+.landing .features {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 18px;
+  max-width: 1100px;
+}
+
+.landing .feature {
+  width: 320px;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--card-bg) 85%, transparent 15%), color-mix(in srgb, var(--card-bg) 70%, var(--bg, #fff) 30%));
+  padding: 22px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  box-shadow: 0 10px 28px color-mix(in srgb, var(--shadow-sm) 100%, transparent 0%);
+  transition: transform .18s ease, box-shadow .18s ease;
+  text-align: left;
+}
+
+@media (max-width: 720px) {
+  .landing .feature {
+    width: 100%;
+    max-width: 380px;
+  }
+}
+
+.landing .feature:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 50px color-mix(in srgb, var(--shadow-sm) 120%, transparent 0%);
+}
+
+.landing .feature-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--accent-1) 9%, transparent 91%), transparent);
+  margin-bottom: 12px;
+  color: var(--accent-1);
+}
+
+/* =========================
+   Footer
+   ========================= */
+.landing-footer {
+  width: 100%;
+  max-width: 1100px;
+  margin-top: 18px;
+}
+
+.landing .footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: var(--muted);
+  font-size: 14px;
+  padding: 18px;
+  border-radius: 12px;
+  border-top: 1px solid var(--border);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--card-bg) 80%, transparent 20%), color-mix(in srgb, var(--card-bg) 70%, var(--bg, #fff) 30%));
+}
+
+/* =========================
+   Accessibility & small tweaks
+   ========================= */
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+
+  .landing .hero,
+  .landing .blog-card,
+  .landing .btn,
+  .landing .feature {
+    transition: none !important;
+    transform: none !important;
+  }
+
+  .landing .blog-card img {
+    transform: none !important;
+  }
+}
+
+/* Focus style for interactive links in cards */
+.landing a:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent-1) 12%, transparent 0%);
+  border-radius: 8px;
+}
+
+/* small utility */
+.landing .sr-only {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

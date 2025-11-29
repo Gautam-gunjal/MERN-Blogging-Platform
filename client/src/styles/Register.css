@@ -1,0 +1,198 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+
+/* === Register Page (scoped) === */
+.auth-register {
+  font-family: "Inter", system-ui, Arial, sans-serif;
+  min-height: 78vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 16px;
+  background: linear-gradient(180deg, var(--bg, #f8fbff) 0%, color-mix(in srgb, var(--bg, #f8fbff) 90%, var(--surface, #fff) 10%) 100%);
+}
+
+/* === Form Card === */
+.auth-register .auth-form {
+  width: 100%;
+  max-width: 420px;
+  background: var(--surface, #ffffff);
+  padding: 32px 28px;
+  border-radius: 14px;
+  box-shadow: var(--shadow, 0 12px 32px rgba(10, 25, 70, 0.08));
+  border: 1px solid var(--border, rgba(15, 23, 42, 0.04));
+}
+
+.auth-register .auth-form h2 {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text, #0b1220);
+  margin-bottom: 16px;
+}
+
+/* === Feedback Messages === */
+.auth-register .feedback {
+  margin: 12px 0;
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.auth-register .feedback.err {
+  background: color-mix(in srgb, #fff1f2 100%, var(--surface, #fff) 0%);
+  color: #dc2626;
+  border: 1px solid color-mix(in srgb, #ef4444 15%, transparent 85%);
+}
+
+.auth-register .feedback.success {
+  background: color-mix(in srgb, #ecfdf5 100%, var(--surface, #fff) 0%);
+  color: #15803d;
+  border: 1px solid color-mix(in srgb, #16a34a 15%, transparent 85%);
+}
+
+/* === Input Fields === */
+.auth-register .field {
+  display: block;
+  margin: 14px 0;
+  text-align: left;
+}
+
+.auth-register .label {
+  display: block;
+  color: var(--text, #0f172a);
+  font-weight: 600;
+  font-size: 13px;
+  margin-bottom: 6px;
+}
+
+.auth-register .field input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--border, #e2e8f0);
+  background: var(--surface, #ffffff);
+  font-size: 14px;
+  color: var(--text, #0f172a);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.auth-register .field input:focus {
+  outline: none;
+  border-color: var(--accent, #2563eb);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent, #2563eb) 10%, transparent 90%);
+}
+
+/* === Password Row (Show/Hide) === */
+.auth-register .pw-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.auth-register .pw-row input {
+  flex: 1;
+}
+
+.auth-register .pw-toggle {
+  background: transparent;
+  border: 1px solid var(--border, #e2e8f0);
+  border-radius: 10px;
+  color: var(--text, #1e293b);
+  font-weight: 600;
+  padding: 8px 10px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.auth-register .pw-toggle:hover {
+  background: color-mix(in srgb, var(--surface, #fff) 94%, transparent 6%);
+}
+
+/* === Password Strength Bar === */
+.auth-register .pw-strength {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.auth-register .pw-strength .bar {
+  height: 8px;
+  border-radius: 8px;
+  width: calc(20% * (var(--score) + 0.01));
+  transition: background 0.25s ease, width 0.25s ease;
+}
+
+/* Strength Colors (kept explicit to preserve UX) */
+.auth-register .pw-strength .bar.s-0 { background: linear-gradient(90deg, #fee2e2, #fecaca); }
+.auth-register .pw-strength .bar.s-1 { background: linear-gradient(90deg, #fef3c7, #facc15); }
+.auth-register .pw-strength .bar.s-2 { background: linear-gradient(90deg, #bbf7d0, #34d399); }
+.auth-register .pw-strength .bar.s-3 { background: linear-gradient(90deg, #86efac, #16a34a); }
+.auth-register .pw-strength .bar.s-4 { background: linear-gradient(90deg, #4ade80, #15803d); }
+
+.auth-register .pw-meta {
+  display: flex;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--muted, #64748b);
+}
+
+/* === Submit Button === */
+.auth-register .submit {
+  width: 100%;
+  margin-top: 16px;
+  padding: 12px 14px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(90deg, var(--accent, #2563eb), var(--accent-2, #1e40af));
+  color: var(--surface, #fff);
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  box-shadow: 0 8px 20px color-mix(in srgb, var(--accent, #2563eb) 18%, transparent 82%);
+}
+
+.auth-register .submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px color-mix(in srgb, var(--accent, #2563eb) 25%, transparent 75%);
+}
+
+.auth-register .submit:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* === Footer / Sign-in Link === */
+.auth-register .foot {
+  margin-top: 18px;
+  text-align: center;
+  color: var(--muted, #64748b);
+  font-size: 14px;
+}
+
+.auth-register .foot .link {
+  color: var(--accent, #2563eb);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.auth-register .foot .link:hover {
+  text-decoration: underline;
+}
+
+/* === Small Screens === */
+@media (max-width: 480px) {
+  .auth-register .auth-form {
+    padding: 22px 18px;
+  }
+
+  .auth-register .auth-form h2 {
+    font-size: 20px;
+  }
+
+  .auth-register .submit {
+    font-size: 14px;
+  }
+}

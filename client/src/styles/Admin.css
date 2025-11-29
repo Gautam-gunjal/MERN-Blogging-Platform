@@ -1,0 +1,306 @@
+/* styles/Admin.css - Theme-aware version (uses --* variables from App.css) */
+
+.admin {
+  min-height: 100vh;
+  padding: 2rem;
+  /* page background derives from theme bg / surface for light & dark */
+  background: linear-gradient(135deg,
+    color-mix(in srgb, var(--bg, #0f172a) 80%, var(--surface, #0f172a) 20%) 0%,
+    color-mix(in srgb, var(--bg, #1e293b) 85%, var(--surface, #1e293b) 15%) 50%,
+    color-mix(in srgb, var(--bg, #0f172a) 80%, var(--surface, #0f172a) 20%) 100%);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--text, #f8fafc);
+}
+
+/* Header Section */
+.admin > h3 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin: 0 0 1rem 0;
+  /* keep the gradient headline but use theme accents */
+  background: linear-gradient(135deg, var(--accent, #60a5fa) 0%, var(--accent-2, #c084fc) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.025em;
+  text-align: center;
+}
+
+/* Stats Cards - Modern Grid */
+.admin .admin-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0 3rem 0;
+}
+
+.admin .stat-card {
+  /* surface + subtle border */
+  background: color-mix(in srgb, var(--surface, rgba(255,255,255,0.05)) 85%, transparent 15%);
+  backdrop-filter: blur(12px);
+  border: 1px solid color-mix(in srgb, var(--border, rgba(255,255,255,0.1)) 90%, transparent 10%);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow, 0 8px 32px rgba(0,0,0,0.2));
+}
+
+.admin .stat-card:hover {
+  transform: translateY(-4px);
+  background: color-mix(in srgb, var(--surface, rgba(255,255,255,0.08)) 88%, transparent 12%);
+  box-shadow: 0 12px 40px color-mix(in srgb, var(--shadow, rgba(0,0,0,0.3)) 100%, transparent 0%);
+}
+
+.admin .stat-number {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(135deg, var(--accent, #60a5fa) 0%, var(--accent-2, #c084fc) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.admin .stat-label {
+  font-size: 0.9rem;
+  color: var(--muted, #94a3b8);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Main Content Grid */
+.admin > section {
+  background: color-mix(in srgb, var(--surface, rgba(255,255,255,0.05)) 90%, transparent 10%);
+  backdrop-filter: blur(12px);
+  border: 1px solid color-mix(in srgb, var(--border, rgba(255,255,255,0.1)) 90%, transparent 10%);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: var(--shadow, 0 8px 32px rgba(0,0,0,0.2));
+}
+
+/* Section Headers */
+.admin section h4 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0 0 1.5rem 0;
+  color: var(--text, #e2e8f0);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.admin section h4::before {
+  content: '';
+  width: 4px;
+  height: 1.25rem;
+  background: linear-gradient(135deg, var(--accent, #60a5fa) 0%, var(--accent-2, #c084fc) 100%);
+  border-radius: 2px;
+}
+
+/* --- Items List --- */
+.admin section > div[style],
+.admin .admin-item {
+  background: color-mix(in srgb, var(--surface, rgba(255,255,255,0.03)) 88%, transparent 12%);
+  border: 1px solid color-mix(in srgb, var(--border, rgba(255,255,255,0.05)) 90%, transparent 10%);
+  border-radius: 0.75rem;
+  padding: 1rem 1.25rem;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  transition: all 0.2s ease;
+}
+
+/* hover */
+.admin section > div[style]:hover,
+.admin .admin-item:hover {
+  background: color-mix(in srgb, var(--surface, rgba(255,255,255,0.06)) 88%, transparent 12%);
+  border-color: color-mix(in srgb, var(--border, rgba(255,255,255,0.1)) 90%, transparent 10%);
+  transform: translateX(4px);
+}
+
+/* Existing single-line content (users) */
+.admin section > div[style] > div:first-child {
+  flex: 1;
+  color: var(--text, #e2e8f0);
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+/* structured layout for posts (title left, author center) */
+.admin .admin-item {
+  align-items: center;
+}
+
+/* container holding title + author */
+.admin .admin-item-main {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex: 1;
+  min-width: 0;
+}
+
+/* title on the left */
+.admin .admin-item-title {
+  flex: 1 1 auto;
+  text-align: left;
+  font-size: 0.95rem;
+  color: var(--text, #e2e8f0);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+}
+
+/* author centered */
+.admin .admin-item-author {
+  flex: 0 0 220px;
+  text-align: center;
+  color: var(--muted, #94a3b8);
+  font-weight: 600;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* header row styling */
+.admin .admin-item-header {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0 0.25rem 0.5rem;
+  margin-bottom: 0.5rem;
+  transform: none;
+}
+
+.admin .admin-item-header:hover {
+  background: transparent;
+  border: none;
+  transform: none;
+}
+
+/* reserve space on the right (matching the Delete button) so header columns align */
+.admin .admin-item-header::after {
+  content: '';
+  display: block;
+  flex: 0 0 140px;   /* reserve fixed space for the action column (delete button) */
+  min-width: 140px;
+}
+
+.admin .admin-item-title-label,
+.admin .admin-item-author-label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted, #64748b);
+  font-weight: 600;
+  margin-right: -54px;
+}
+
+
+/* Admin Badge (users kept) */
+.admin section > div[style] strong {
+  background: linear-gradient(135deg, color-mix(in srgb, #f59e0b 100%, var(--accent 0%)) 0%, color-mix(in srgb, #d97706 100%, var(--accent 0%)) 100%);
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  margin-left: 0.5rem;
+}
+
+/* Buttons - scoped */
+.admin button {
+  /* danger button uses a --danger fallback */
+  background: linear-gradient(135deg, var(--danger, #ef4444) 0%, color-mix(in srgb, var(--danger, #ef4444) 85%, #dc2626 100%) 100%);
+  color: var(--surface, #fff);
+  border: none;
+  padding: 0.6rem 1.25rem;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 16px color-mix(in srgb, var(--danger, #ef4444) 30%, transparent 70%);
+}
+
+.admin button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px color-mix(in srgb, var(--danger, #ef4444) 36%, transparent 64%);
+}
+
+/* Error Message */
+.admin .admin-error {
+  background: color-mix(in srgb, var(--danger, rgba(239,68,68,0.1)) 100%, transparent 0%);
+  border: 1px solid color-mix(in srgb, var(--danger, rgba(239,68,68,0.3)) 60%, transparent 40%);
+  color: color-mix(in srgb, var(--danger, #fca5a5) 100%, transparent 0%);
+  padding: 1rem 1.25rem;
+  border-radius: 0.75rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* Empty States */
+.admin section > div:first-child:not([style]) {
+  text-align: center;
+  color: var(--muted, #64748b);
+  font-style: italic;
+  padding: 2rem;
+  background: color-mix(in srgb, var(--surface, rgba(255,255,255,0.02)) 92%, transparent 8%);
+  border-radius: 0.75rem;
+  border: 1px dashed color-mix(in srgb, var(--border, rgba(255,255,255,0.1)) 70%, transparent 30%);
+}
+
+/* Loading State */
+.admin > div:first-child {
+  text-align: center;
+  padding: 3rem;
+  color: var(--muted, #94a3b8);
+  font-size: 1.1rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .admin { padding: 1rem; }
+  .admin > h3 { font-size: 2rem; }
+  .admin .admin-stats { grid-template-columns: 1fr; gap: 1rem; }
+  .admin .stat-card { padding: 1.25rem; }
+  .admin .stat-number { font-size: 2rem; }
+  .admin > section { padding: 1.25rem; }
+
+  .admin .admin-item-main {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  .admin .admin-item-author,
+  .admin .admin-item-header .admin-item-author-label {
+    flex: none;
+    width: 100%;
+    text-align: left;
+  }
+  .admin button {
+    align-self: flex-end;
+    width: 100%;
+    max-width: 140px;
+  }
+
+  /* ensure header placeholder behaves like the Delete button on small screens */
+  .admin .admin-item-header::after {
+    align-self: flex-end;
+    width: 100%;
+    max-width: 140px;
+  }
+}
+
+@media (max-width: 480px) {
+  .admin > h3 { font-size: 1.75rem; }
+  .admin .admin-stats { margin: 1.5rem 0 2rem 0; }
+  .admin section h4 { font-size: 1.1rem; }
+}

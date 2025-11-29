@@ -1,0 +1,165 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+/* === Login Page (scoped) === */
+.auth-login {
+  font-family: "Inter", system-ui, Arial, sans-serif;
+  min-height: 78vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 16px;
+
+  /* page background follows theme bg */
+  background: linear-gradient(180deg, var(--bg, #f8fbff) 0%, color-mix(in srgb, var(--bg, #f8fbff) 90%, var(--surface, #fff) 10%) 100%);
+}
+
+/* Card */
+.auth-login .auth-form {
+  width: 100%;
+  max-width: 420px;
+
+  /* card surface */
+  background: var(--surface, #ffffff);
+  padding: 32px 28px;
+  border-radius: 14px;
+  box-shadow: var(--shadow, 0 12px 32px rgba(10, 25, 70, 0.08));
+  border: 1px solid var(--border, rgba(15, 23, 42, 0.04));
+}
+
+.auth-login .auth-form h2 {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text, #0b1220);
+  margin-bottom: 16px;
+}
+
+/* Feedback */
+.auth-login .feedback {
+  margin: 12px 0;
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.auth-login .feedback.err {
+  background: color-mix(in srgb, #fff1f2 100%, var(--surface, #fff) 0%);
+  color: #dc2626;
+  border: 1px solid color-mix(in srgb, #ef4444 15%, transparent 85%);
+}
+
+/* Fields */
+.auth-login .field {
+  display: block;
+  margin: 14px 0;
+  text-align: left;
+}
+
+.auth-login .label {
+  display: block;
+  color: var(--text, #0f172a);
+  font-weight: 600;
+  font-size: 13px;
+  margin-bottom: 6px;
+}
+
+.auth-login .field input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--border, #e2e8f0);
+  background: var(--surface, #ffffff);
+  font-size: 14px;
+  color: var(--text, #0f172a);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.auth-login .field input:focus {
+  outline: none;
+  border-color: var(--accent, #2563eb);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent, #2563eb) 10%, transparent 90%);
+}
+
+/* Password row */
+.auth-login .pw-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.auth-login .pw-row input {
+  flex: 1;
+}
+
+.auth-login .pw-toggle {
+  background: transparent;
+  border: 1px solid var(--border, #e2e8f0);
+  border-radius: 10px;
+  color: var(--text, #1e293b);
+  font-weight: 600;
+  padding: 8px 10px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.auth-login .pw-toggle:hover {
+  background: color-mix(in srgb, var(--surface, #fff) 94%, transparent 6%);
+}
+
+/* Submit */
+.auth-login .submit {
+  width: 100%;
+  margin-top: 16px;
+  padding: 12px 14px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(90deg, var(--accent, #2563eb), var(--accent-2, #1e40af));
+  color: var(--surface, #fff);
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  box-shadow: 0 8px 20px color-mix(in srgb, var(--accent, #2563eb) 18%, transparent 82%);
+}
+
+.auth-login .submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px color-mix(in srgb, var(--accent, #2563eb) 25%, transparent 75%);
+}
+
+.auth-login .submit:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Footer */
+.auth-login .foot {
+  margin-top: 18px;
+  text-align: center;
+  color: var(--muted, #64748b);
+  font-size: 14px;
+}
+
+.auth-login .foot .link {
+  color: var(--accent, #2563eb);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.auth-login .foot .link:hover {
+  text-decoration: underline;
+}
+
+/* Small screens */
+@media (max-width: 480px) {
+  .auth-login .auth-form {
+    padding: 22px 18px;
+  }
+
+  .auth-login .auth-form h2 {
+    font-size: 20px;
+  }
+
+  .auth-login .submit { font-size: 14px; }
+}

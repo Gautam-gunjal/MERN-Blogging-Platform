@@ -1,0 +1,466 @@
+/* Profile (theme-aware) */
+
+/* Root profile dashboard: use theme variables so it works in light & dark */
+.profile.dashboard {
+  display: flex;
+  min-height: 100vh;
+  background: linear-gradient(180deg, var(--bg), color-mix(in srgb, var(--bg) 85%, var(--surface) 15%));
+  color: var(--text);
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+  gap: 24px;
+  padding: 24px;
+}
+
+/* Sidebar */
+.profile.dashboard .sidebar {
+  width: 240px;
+  background: color-mix(in srgb, var(--surface) 92%, transparent 8%);
+  border-radius: 12px;
+  padding: 18px;
+  box-shadow: 0 8px 24px color-mix(in srgb, var(--shadow, rgba(2,6,23,0.35)) 70%, transparent 30%);
+  border: 1px solid color-mix(in srgb, var(--border) 80%, transparent 20%);
+  flex-shrink: 0;
+}
+.profile.dashboard .sidebar-inner { text-align: left; }
+
+/* Large avatar */
+.profile.dashboard .avatar-large {
+  width: 84px;
+  height: 84px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--surface) 90%, transparent 10%), color-mix(in srgb, var(--surface) 75%, black 5%));
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:700;
+  font-size:26px;
+  color: color-mix(in srgb, var(--muted) 80%, var(--text) 20%);
+  margin: 8px 0 10px;
+}
+
+.profile.dashboard .side-name { font-size:18px; margin:6px 0 0; color: var(--text); }
+.profile.dashboard .side-role { font-size:13px; color: var(--muted); margin-bottom:12px; }
+
+.profile.dashboard .side-nav { margin-top:18px; display:flex; flex-direction:column; gap:10px; }
+.profile.dashboard .side-link {
+  padding:10px 12px;
+  border-radius:10px;
+  color: var(--text);
+  text-decoration:none;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-weight:600;
+}
+.profile.dashboard .side-link:hover {
+  background: color-mix(in srgb, var(--surface) 85%, transparent 15%);
+}
+.profile.dashboard .side-link.active {
+  background: color-mix(in srgb, var(--surface) 88%, transparent 12%);
+  box-shadow: inset 0 1px 0 color-mix(in srgb, var(--border) 60%, transparent 40%);
+}
+
+/* Main content */
+.profile.dashboard .content {
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+}
+
+/* Header */
+.profile.dashboard .profile-header {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--surface) 92%, transparent 8%), color-mix(in srgb, var(--surface) 86%, transparent 14%));
+  border-radius: 12px;
+  padding: 18px;
+  display:flex;
+  align-items:center;
+  border: 1px solid var(--border);
+  box-shadow: 0 6px 18px color-mix(in srgb, var(--shadow, rgba(2,6,23,0.35)) 80%, transparent 20%);
+}
+.profile.dashboard .header-left {
+  display:flex;
+  gap:18px;
+  align-items:flex-start;
+  width:100%;
+}
+.profile.dashboard .avatar-hero {
+  width:110px;
+  height:110px;
+  border-radius:999px;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--surface) 90%, transparent 10%), color-mix(in srgb, var(--surface) 80%, black 6%));
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:28px;
+  color: var(--text);
+  font-weight:800;
+  border: 3px solid color-mix(in srgb, var(--border) 80%, transparent 20%);
+}
+.profile.dashboard .header-info h1 { margin:0; font-size:32px; color: var(--text); }
+.profile.dashboard .header-info .sub { margin-top:8px; color: var(--muted); font-size:14px; }
+.profile.dashboard .about { margin-top:12px; width:100%; }
+.profile.dashboard .about > label { display:block; color: var(--muted); font-size:13px; margin-bottom:8px; }
+.profile.dashboard .about-box {
+  background: color-mix(in srgb, var(--surface) 90%, transparent 10%);
+  padding:14px;
+  border-radius:8px;
+  color: var(--text);
+  border:1px solid var(--border);
+  max-width: 820px;
+}
+
+/* header actions */
+.profile.dashboard .header-actions { margin-top:12px; }
+
+/* === Scoped button rules: profile only (prevents leakage) === */
+.profile .btn {
+  display:inline-block;
+  padding:8px 12px;
+  border-radius:8px;
+  background: color-mix(in srgb, var(--surface) 85%, transparent 15%);
+  color: var(--text);
+  border:1px solid var(--border);
+  cursor:pointer;
+  text-decoration:none;
+}
+
+/* primary button inside profile */
+.profile .btn.primary {
+  background: var(--accent-2);
+  color: var(--surface);
+  border: none;
+}
+
+/* edit button inside profile */
+.profile .btn.edit {  background: var(--accent-1); color: var(--surface); border: none; }
+
+/* Stats row */
+.profile.dashboard .stats-row {
+  display:grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+.profile.dashboard .stat-card {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--surface) 92%, transparent 8%), color-mix(in srgb, var(--surface) 86%, transparent 14%));
+  padding:16px;
+  border-radius:10px;
+  border:1px solid var(--border);
+}
+.profile.dashboard .stat-title { color: var(--muted); font-size:13px; margin-bottom:6px; }
+.profile.dashboard .stat-value { font-size:20px; color: var(--text); font-weight:700; }
+.profile.dashboard .stat-note { font-size:12px; color: var(--muted); margin-top:8px; }
+
+/* Posts area */
+.profile.dashboard .posts-section { margin-top:10px; }
+.profile.dashboard .posts-head { display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; }
+
+/* Scope the create button inside posts-head to profile as well */
+.profile .posts-head .btn.primary { background: var(--accent-2); color: var(--surface); border: none; }
+
+.profile.dashboard .posts-grid {
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap:12px;
+}
+.profile.dashboard .post-card {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--surface) 92%, transparent 8%), color-mix(in srgb, var(--surface) 86%, transparent 14%));
+  border-radius:10px;
+  padding:12px;
+  border:1px solid var(--border);
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.profile.dashboard .post-meta { display:flex; justify-content:space-between; align-items:center; gap:8px; font-weight:700; color: var(--text); }
+.profile.dashboard .post-excerpt { color: var(--muted); font-size:14px; line-height:1.5; min-height:40px; }
+.profile.dashboard .post-footer { display:flex; justify-content:space-between; align-items:center; margin-top:auto; }
+.profile.dashboard .post-stats { display:flex; gap:12px; color: var(--muted); font-weight:600; }
+
+.profile .post-actions .btn.small { padding:6px 8px; font-size:13px; background: color-mix(in srgb, var(--surface) 88%, transparent 12%); border:none; color: var(--text); }
+
+.profile.dashboard .post-actions { display:flex; gap:8px; align-items:center; }
+
+/* empty states */
+.profile.dashboard .empty { padding:18px; border-radius:8px; color: var(--muted); }
+
+/* Responsiveness */
+@media (max-width: 1000px) {
+  .profile.dashboard .stats-row { grid-template-columns: repeat(2, 1fr); }
+  .profile.dashboard { padding: 16px; gap: 14px; }
+  .profile.dashboard .sidebar { display:none; }
+}
+@media (max-width: 640px) {
+  .profile.dashboard .header-left { flex-direction:column; align-items:center; text-align:center; }
+  .profile.dashboard .avatar-hero { margin-bottom:8px; }
+  .profile.dashboard .header-info h1 { font-size:22px; }
+}
+
+/* === Edit profile modal === */
+
+.profile.edit-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: color-mix(in srgb, rgba(0,0,0,0.65) 100%, transparent 0%); /* overlay same in both themes */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  backdrop-filter: blur(4px);
+}
+
+.profile .edit-modal {
+  background: var(--surface);
+  color: var(--text);
+  width: 420px;
+  max-width: 90vw;
+  border-radius: 16px;
+  padding: 20px 22px 18px;
+  position: relative;
+  box-shadow: 0 20px 40px color-mix(in srgb, var(--shadow, rgba(15,23,42,0.35)) 80%, transparent 20%);
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+}
+
+.profile .edit-modal-title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  text-align: left;
+  color: var(--text);
+}
+
+.profile .edit-modal-subtitle {
+  margin: 6px 0 14px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.profile .edit-modal-close {
+  position: absolute;
+  right: 14px;
+  top: 10px;
+  border: none;
+  background: transparent;
+  font-size: 20px;
+  cursor: pointer;
+  color: var(--muted);
+}
+
+.profile .edit-modal-form {
+  margin-top: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.profile .edit-row {
+  display: flex;
+  gap: 10px;
+}
+
+.profile .edit-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.profile .edit-field label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.profile .edit-field input,
+.profile .edit-field textarea {
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  padding: 8px 10px;
+  font-size: 13px;
+  outline: none;
+  background: var(--surface);
+  color: var(--text);
+}
+
+.profile .edit-field input:focus,
+.profile .edit-field textarea:focus {
+  border-color: var(--accent-2);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent-2) 16%, transparent 84%);
+}
+
+.profile .edit-field textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.profile .edit-modal-actions {
+  margin-top: 10px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+/* buttons look like screenshot: white cancel & dark save */
+.profile .edit-modal-cancel {
+  background: var(--surface) !important;
+  color: var(--text) !important;
+  border: 1px solid var(--border) !important;
+}
+
+.profile .edit-modal-save {
+  background: var(--text) !important;
+  color: var(--surface) !important;
+  border: none !important;
+}
+
+.profile .edit-modal-error {
+  background: color-mix(in srgb, #fee2e2 100%, transparent 0%);
+  color: #b91c1c;
+  font-size: 12px;
+  padding: 6px 8px;
+  border-radius: 6px;
+  margin-bottom: 4px;
+}
+
+.profile.dashboard .avatar-hero-img,
+.profile.dashboard .avatar-large-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 999px;
+  object-fit: cover;
+  display: block;
+}
+
+.profile.dashboard .avatar-large {
+  overflow: hidden;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--surface) 92%, transparent 8%), color-mix(in srgb, var(--surface) 80%, black 6%));
+}
+
+/* === Blogs table (matches screenshot layout) === */
+.profile.dashboard .blogs-table {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--surface) 92%, transparent 8%), color-mix(in srgb, var(--surface) 86%, transparent 14%));
+  border-radius: 12px;
+  padding: 18px;
+  border: 1px solid var(--border);
+  box-shadow: 0 8px 24px color-mix(in srgb, var(--shadow, rgba(2,6,23,0.35)) 80%, transparent 20%);
+  margin-top: 12px;
+}
+
+/* header row */
+.profile.dashboard .blogs-table-head {
+  display: grid;
+  grid-template-columns: 1fr 220px 140px 90px;
+  gap: 12px;
+  padding: 10px 6px;
+  color: var(--muted);
+  font-weight: 600;
+  font-size: 14px;
+  align-items: center;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 10px;
+}
+
+/* body rows */
+.profile.dashboard .blogs-table-body { display: flex; flex-direction: column; gap: 12px; padding: 6px 0; }
+
+.profile.dashboard .blogs-row {
+  display: grid;
+  grid-template-columns: 1fr 220px 140px 90px;
+  gap: 12px;
+  align-items: center;
+  padding: 12px;
+  border-radius: 10px;
+  transition: background 120ms ease;
+  cursor: default;
+}
+.profile.dashboard .blogs-row:hover {
+  background: color-mix(in srgb, var(--surface) 88%, transparent 12%);
+}
+
+/* title column: thumbnail + title text */
+.profile.dashboard .col-title { display:flex; gap:12px; align-items:center; }
+.profile.dashboard .blog-thumb { width:86px; height:56px; border-radius:8px; overflow:hidden; flex-shrink:0; background: linear-gradient(135deg, color-mix(in srgb, var(--surface) 92%, transparent 8%), color-mix(in srgb, var(--surface) 80%, black 6%)); display:flex; align-items:center; justify-content:center; color: var(--muted); font-weight:700; }
+.profile.dashboard .blog-thumb img { width:100%; height:100%; object-fit:cover; display:block; }
+.profile.dashboard .thumb-placeholder { font-weight:700; font-size:16px; color: var(--muted); }
+
+.profile.dashboard .blog-title .title-text { font-size:15px; color: var(--text); font-weight:700; margin-bottom:4px; }
+.profile.dashboard .blog-title .title-sub { color: var(--muted); font-size:13px; max-width:720px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+
+/* category/date columns */
+.profile.dashboard .col-category, .profile.dashboard .col-date { color: var(--muted); font-size:14px; font-weight:600; }
+
+/* action column */
+.profile.dashboard .col-action { display:flex; justify-content:flex-end; position:relative; }
+
+.profile.dashboard .dots-btn {
+  background: transparent;
+  border: none;
+  padding: 6px;
+  border-radius: 8px;
+  cursor: pointer;
+  color: var(--muted);
+}
+.profile.dashboard .dots-btn:hover { background: color-mix(in srgb, var(--surface) 88%, transparent 12%); }
+
+ /* small white action menu - make it theme aware */
+.profile.dashboard .action-menu {
+  position: absolute;
+  right: 0;
+  top: 34px;
+  min-width: 160px;
+  background: var(--surface);
+  color: var(--text);
+  border-radius: 10px;
+  box-shadow: 0 12px 30px color-mix(in srgb, var(--shadow, rgba(2,6,23,0.45)) 80%, transparent 20%);
+  border: 1px solid var(--border);
+  padding: 6px;
+  z-index: 40;
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+
+/* action items */
+.profile.dashboard .action-item {
+  display:flex;
+  gap:8px;
+  align-items:center;
+  padding:8px 10px;
+  background:transparent;
+  border:none;
+  cursor:pointer;
+  font-weight:600;
+  color: var(--text);
+  border-radius:8px;
+}
+.profile.dashboard .action-item:hover { background: color-mix(in srgb, var(--surface) 88%, transparent 12%); }
+
+/* danger (delete) style */
+.profile.dashboard .action-item.danger { color:#b91c1c; }
+.profile.dashboard .action-item svg { opacity:0.9; }
+
+/* footer small note */
+.profile.dashboard .blogs-footer {
+  margin-top: 14px;
+  text-align:center;
+  color: var(--muted);
+  font-size:14px;
+}
+
+/* empty message inside table */
+.profile.dashboard .blogs-empty { padding: 18px; color: var(--muted); text-align:center; }
+
+/* responsive adjustments */
+@media (max-width: 1000px) {
+  .profile.dashboard .blogs-table-head,
+  .profile.dashboard .blogs-row {
+    grid-template-columns: 1fr 140px 120px 70px;
+  }
+}
+@media (max-width: 720px) {
+  .profile.dashboard .blogs-table-head,
+  .profile.dashboard .blogs-row {
+    grid-template-columns: 1fr 110px 90px 60px;
+  }
+  .profile.dashboard .blog-thumb { width:64px; height:44px; }
+}
