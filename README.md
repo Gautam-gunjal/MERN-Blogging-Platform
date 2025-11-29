@@ -28,7 +28,7 @@ A complete full-stack **Blogging Web Application** built using the **MERN stack*
 - [Future Improvements](#future-improvements)
 - [License](#license)
 
-## 🔥 Overview
+## 🔥 Overview <a id="overview"></a>
 
 This project is a **MERN based blogging platform** where users can register/login, create blogs with images, like posts, comment, view profile statistics and use an admin panel to manage users/posts.
 
@@ -37,7 +37,7 @@ This project is a **MERN based blogging platform** where users can register/logi
 | `/client` | React Frontend |
 | `/server` | API Backend + Database |
 
-## ✨ Features
+## ✨ Features <a id="features"></a>
 
 ### 👥 User Features
 
@@ -60,7 +60,7 @@ This project is a **MERN based blogging platform** where users can register/logi
 - Admin role protected
 - Admin routes secured using middleware
 
-## 🛠 Tech Stack
+## 🛠 Tech Stack <a id="tech-stack"></a>
 
 ### Frontend
 - React 18, React Router, Axios, ReactQuill, CSS
@@ -68,7 +68,7 @@ This project is a **MERN based blogging platform** where users can register/logi
 ### Backend
 - Node.js, Express.js, MongoDB, Mongoose, JWT, Multer, bcryptjs
 
-## 📂 Project Structure
+## 📂 Project Structure <a id="project-structure"></a>
 
 ```
 Blogging Website/
@@ -90,7 +90,7 @@ Blogging Website/
     └── package.json
 ```
 
-## 🚀 Getting Started
+## 🚀 Getting Started <a id="getting-started"></a>
 
 ### 1️⃣ Prerequisites
 
@@ -139,7 +139,7 @@ cd ../client && npm start
 | Frontend | http://localhost:3000 |
 | Backend API | http://localhost:5000/api |
 
-## 📡 API Overview
+## 📡 API Overview <a id="api-overview"></a>
 
 | Method | Route | Use |
 |---|---|---|
@@ -151,14 +151,14 @@ cd ../client && npm start
 | GET | `/admin/users` | Admin: Users |
 | GET | `/admin/posts` | Admin: Posts |
 
-## 🔧 Scripts
+## 🔧 Scripts <a id="available-scripts"></a>
 
 | Area | Script |
 |---|---|
 | Client | `npm start`, `npm build` |
 | Server | `npm start`, `npm run dev` |
 
-## 🚀 Future Improvements
+## 🚀 Future Improvements <a id="future-improvements"></a>
 
 - Reset password system
 - Notifications
